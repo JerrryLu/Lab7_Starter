@@ -17,6 +17,7 @@ self.addEventListener('install', function (event) {
    * Part 2 Step 2
    * Create a function as outlined above
    */
+  
    event.waitUntil(
     caches.open(CACHE_NAME)
       .then(function(cache) {
@@ -36,6 +37,7 @@ self.addEventListener('activate', function (event) {
    * Part 2 Step 3
    * Create a function as outlined above, it should be one line
    */
+
     event.waitUntil(clients.claim());
 });
 
@@ -44,8 +46,8 @@ self.addEventListener('fetch', function (event) {
   /**
    * Part 2 Step 4
    * Create a function as outlined above
-   * Code from: https://developers.google.com/web/fundamentals/primers/service-workers
    */
+
    event.respondWith(
     caches.match(event.request)
       .then(function(response) {
