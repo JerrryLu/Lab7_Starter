@@ -36,9 +36,7 @@ self.addEventListener('activate', function (event) {
    * Part 2 Step 3
    * Create a function as outlined above, it should be one line
    */
-   self.addEventListener('activate', function(event) {
     event.waitUntil(clients.claim());
-  });
 });
 
 // Intercept fetch requests and store them in the cache
