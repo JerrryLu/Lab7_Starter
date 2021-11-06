@@ -33,11 +33,12 @@ export class Router {
    */
   addPage(page, pageFunc) {
     /**
-     * TODO Part 1 - Step 2
+     * Part 1 - Step 2
      * Just like in the constructor above, store the pageFunc variable inside this
      * router instance using the 'this' keyword. Substitute 'home' for the variable
      * page
      */
+    this[page] = pageFunc;
   }
 
   /**
@@ -50,7 +51,7 @@ export class Router {
   navigate(page, statePopped) {
     console.log(`navigate() function called, requested page: ${page}`);
     /**
-     * TODO - Part 1 - Step 4
+     * Part 1 - Step 4
      * Now, we are going to call the functions that we stored earlier based on 
      * what page is being requested. For this function:
      * 
@@ -65,5 +66,23 @@ export class Router {
      *     and URL + hash to history
      *  4. Finally, call the stored function for the given page
      */
+
+    if(this[page] == undefined) {
+      console.log("Page is not set");
+      return;
+    }
+
+    let hash;
+    if(page == "home") {
+      hash = "";
+    }
+    else {
+      hash = "#" + page;
+    }
+    console.log(page);
+    if(!statePopped && window.location.hash != hash) {
+      history.pushState({page}, hash, window.location.origin + window.location.pathname + hash);
+    }
+    this[page]();
   }
 }
